@@ -15,28 +15,39 @@ public class UserService {
     public List<User> findAll () {
         return userMapper.list();
     }
-
     public User findOne (Integer id) {
         return userMapper.detail(id);
     }
-
-    public boolean update (User user) {
+    public String update (User user) {
         if ((user.getId() + "").equals("")) {
-            return false;
+            return "传入id为空";
         }
-        return userMapper.update(user);
+        if (findOne(user.getId()) == null) {
+            return "没有查询到该用户";
+        }
+        boolean update = userMapper.update(user);
+        if (update) {
+            return "操作成功";
+        }
+        return "操作失败";
     }
-
-    public boolean submit(User user) {
+    public String submit(User user) {
         if (user == null) {
-            return false;
+            return "传入参数有误";
         }
-        return userMapper.submit(user);
+        boolean submit = userMapper.submit(user);
+        if (submit) {
+            return "操作成功";
+        }
+        return "操作失败";
     }
-
-    public boolean removeById(Integer id) {
-        if (id == null) return false;
-        return userMapper.remove(id);
+    public String removeById(Integer id) {
+        if (id == null) return "传入id为空";
+        boolean remove = userMapper.remove(id);
+        if (remove) {
+            return "删除成功";
+        }
+        return "删除失败";
     }
 
 }

@@ -4,10 +4,7 @@ import com.example.demo.entity.User;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,15 +24,15 @@ public class UserController {
         return userService.findOne(id);
     }
     @PostMapping("/update")
-    public boolean updateUser(User user) {
+    public String updateUser(@RequestBody User user) {
         return userService.update(user);
     }
     @PostMapping("/submit")
-    public boolean submitUser(User user) {
+    public String submitUser(@RequestBody User user) {
         return userService.submit(user);
     }
     @PostMapping("/remove")
-    public boolean removeUser(Integer id) {
+    public String removeUser(Integer id) {
         return userService.removeById(id);
     }
 }
