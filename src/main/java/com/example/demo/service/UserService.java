@@ -16,8 +16,27 @@ public class UserService {
         return userMapper.list();
     }
 
-    public User findOne (int id) {
+    public User findOne (Integer id) {
         return userMapper.detail(id);
+    }
+
+    public boolean update (User user) {
+        if ((user.getId() + "").equals("")) {
+            return false;
+        }
+        return userMapper.update(user);
+    }
+
+    public boolean submit(User user) {
+        if (user == null) {
+            return false;
+        }
+        return userMapper.submit(user);
+    }
+
+    public boolean removeById(Integer id) {
+        if (id == null) return false;
+        return userMapper.remove(id);
     }
 
 }

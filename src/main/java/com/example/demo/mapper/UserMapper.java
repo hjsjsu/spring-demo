@@ -9,5 +9,8 @@ import java.util.List;
 public interface UserMapper {
     List<User> list();
     User detail(int id);
+    boolean update(User user);
+    boolean submit(User user);
+    boolean remove(int id);
 
 }
